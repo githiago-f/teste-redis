@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+
+version: '3'
+
+services:
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    command: redis-server --requirepass Redis2019!
