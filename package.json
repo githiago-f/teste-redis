@@ -2,10 +2,18 @@
   "name": "teste-redis",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app/cli.js",
+  "engines": {
+    "node": ">= 16.0.0",
+    "npm": "Please use yarn",
+    "yarn": ">= 1.22.0"
+  },
+  "engineStrict": true,
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node ./src/app/server.js",
+    "cli": "node ."
   },
   "keywords": [],
   "author": "",

@@ -1,25 +1,30 @@
-import { cli, newsIndex, newsList } from './config.js';
+import { cli, newsIndex, newsList } from '../config/index.mjs';
 import chalk from 'chalk';
 
+export const printNews = (news) => {
+  for (const n of news) {
+    console.log(chalk.blue(n));
+  }
+}
+
 export const createNews = async (title, body) => {
+  console.log('createNews');
   await cli.connect();
 
   const id = await cli.incr(newsIndex);
   const news = JSON.stringify({
-    id, 
+    id,
     titulo: title,
-    corpo: body
+    corpo: body,
+    createdAt: (new Date()).toLocaleDateString('pt-BR')
   });
+
+  console.log(chalk.green(`Notícia inserida: ${news}`));
+
   await cli.lPush(newsList, news);
   await cli.lTrim(newsList, 0, 4);
 
   await cli.disconnect();
-}
-
-export const printNews = (news) => {
-  for (const n of news) {
-    console.log(chalk.bgGreen(n));
-  }
 }
 
 export const listNews = async () => {
